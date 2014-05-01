@@ -143,6 +143,10 @@ config CPU_FREQ_DEFAULT_GOV_NEOX
 	bool "NeoX"
 	select CPU_FREQ_GOV_NeoX
 
+config CPU_FREQ_DEFAULT_GOV_ZZMOOVE
+	bool "zzmoove"
+	select CPU_FREQ_GOV_ZZMOOVE
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -327,6 +331,9 @@ config CPU_FREQ_GOV_NEOX
     'NeoX' - a tweaked "pegasusq" based smart and smooth optimized governor!
 
            If in doubt, say Y.
+
+config CPU_FREQ_GOV_ZZMOOVE
+	tristate "Fast scaling and hotplugging cpufreq governor for 2,4 or 8 core systems!"
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
