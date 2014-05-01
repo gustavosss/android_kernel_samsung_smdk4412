@@ -11,7 +11,7 @@ cat << CTAG
 		action:"live gpu"
 	}},
 	{ SCheckBox:{
-		description:"Multisample anti-aliasing can improve image quality of some 3D games.",
+		description:"Multisample anti-aliasing can improve image quality of some 3D games. This option can cause force close on some 2D apps that use gpu rendering, like stock gallery app.",
                 label:"4x MSAA",
                 default:0,
                 action:"option MSAA",
