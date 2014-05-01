@@ -41,7 +41,11 @@ cat << CTAG
    unit:"%",
    default:50,
    action:"generic /sys/class/timed_output/vibrator/pwm_value"
-}},	
+}},
+{ SPane:{
+		title:"GPS",
+		description:"The GPS configuration is not working for now because of changes on how synapse works, but you can still place your custom gps.conf file in /data/gps.conf to be applied at boot."
+	}},
 	]
 }
 

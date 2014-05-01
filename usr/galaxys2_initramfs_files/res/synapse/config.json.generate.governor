@@ -58,7 +58,7 @@ values:{
         }},
     { SPane:{
         title:"CPU Governor Tunables",
-        description:"Auto-generated controls for the current governor."
+        description:"Auto-generated controls for the current governor. Info about tunables can be found <a href='http://forum.xda-developers.com/showpost.php?p=19846297&postcount=2'>here</a>."
     }},
     { STreeDescriptor:{
         path:"/sys/devices/system/cpu/cpufreq",
