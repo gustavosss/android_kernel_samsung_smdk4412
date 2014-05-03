@@ -72,11 +72,6 @@ read_config
 
 fi
 
-# disable debugging on some modules
-echo 0 > /sys/module/kernel/parameters/initcall_debug
-echo 0 > /sys/module/binder/parameters/debug_mask
-echo 0 > /sys/module/xt_qtaguid/parameters/debug_mask
-
 # install kernel modules
 mount -o remount,rw /system
 rm /system/lib/modules/*.ko
