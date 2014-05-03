@@ -52,7 +52,17 @@ cat << CTAG
 3:"Dual Core Mode",
                 }
         }},
-        { SPane:{
+{ STitleBar:{
+        title:"Sched Options"
+    }},
+{ SSeekBar:{
+        title:"Multicore Power Savings",
+        description:"Try to group tasks into the least cores possible. The higher the value, the more aggressive.",
+        default:`cat /sys/devices/system/cpu/sched_mc_power_savings`,
+        action:"generic /sys/devices/system/cpu/sched_mc_power_savings",
+        values:{ 0:"0: Disabled", 1:"1", 2:"2" }
+    }},     
+{ SPane:{
 		title:"CPU Voltage Control",
 		description:"Decreasing voltage will lower power consumption of the CPU. Increasing it on overclocked frequencies improves stability. Too low voltage may cause instabilities and freezes."
 	}},
