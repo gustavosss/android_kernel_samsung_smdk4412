@@ -27,6 +27,7 @@ cat << CTAG
 		default:108,
 		action:"generic /sys/module/mali/parameters/step0_clk",
 		values:{
+520:"520 MHz (vpll)",
 440:"440 MHz (vpll)",
 400:"400 MHz",
 330:"330 MHz (vpll)",
@@ -43,6 +44,7 @@ cat << CTAG
 		default:160,
 		action:"generic /sys/module/mali/parameters/step1_clk",
 		values:{
+520:"520 MHz (vpll)",
 440:"440 MHz (vpll)",
 400:"400 MHz",
 330:"330 MHz (vpll)",
@@ -59,6 +61,7 @@ cat << CTAG
 		default:200,
 		action:"generic /sys/module/mali/parameters/step2_clk",
 		values:{
+520:"520 MHz (vpll)",
 440:"440 MHz (vpll)",
 400:"400 MHz",
 330:"330 MHz (vpll)",
@@ -75,6 +78,7 @@ cat << CTAG
 		default:267,
 		action:"generic /sys/module/mali/parameters/step3_clk",
 		values:{
+520:"520 MHz (vpll)",
 440:"440 MHz (vpll)",
 400:"400 MHz",
 330:"330 MHz (vpll)",
