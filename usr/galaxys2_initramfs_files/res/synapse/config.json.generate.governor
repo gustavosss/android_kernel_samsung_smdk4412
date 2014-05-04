@@ -58,7 +58,7 @@ values:{
         }},
     { SPane:{
         title:"CPU Governor Tunables",
-        description:"Auto-generated controls for the current governor. Info about tunables can be found <a href='http://forum.xda-developers.com/showpost.php?p=19846297&postcount=2'>here</a>."
+        description:"Auto-generated controls for the current governor. Info about tunables by <a href='http://forum.xda-developers.com/showpost.php?p=19846297&postcount=2'>Droidphile</a> and <a href='http://forum.xda-developers.com/showpost.php?p=33803172&postcount=53'>AndreiLux</a>."
     }},
     { STreeDescriptor:{
         path:"/sys/devices/system/cpu/cpufreq",
@@ -70,7 +70,9 @@ values:{
                 },
                 exclude:[ "boostpulse",
                           "sampling_rate_current",
-                          "profile" ]
+                          "profile",
+                          "flexrate_num_effective_usage",
+                          "io_is_busy" ]
             }}
         },
         exclude:[ "kset" ]

@@ -47,7 +47,7 @@ cat << CTAG
 	}},
  { SGeneric:{
    title:"GPS Configuration",
-   description:"Here you can change your location to improve GPS by typing your location in the text box below. Info about location prefix codes can be found <a href='http://www.pool.ntp.org/en/'>here</a>",
+   description:"Here you can modify your gps.conf file to improve GPS reception by typing your location code in the text box below. Info about location prefix codes can be found <a href='http://www.pool.ntp.org/en/'>here</a>",
    default:north-america,
    action:"option gps",
 }},

@@ -7,7 +7,7 @@ cat << CTAG
 		title:"CPU Scaling Settings"
 	}},
 	{ SLiveLabel:{
-		title:"Current CPU Frequency, Voltage and Temperature",
+		title:"Current CPU Frequency, Voltage and Temperature:",
 		refresh:1000,
 		action:"live volt"
 	}},

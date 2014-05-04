@@ -3,10 +3,10 @@ cat << CTAG
     name:GPU,
     elements:[
 	{ STitleBar:{
-		title:"GPU Frequency Control"
+		title:"GPU Control"
 	}},
 	{ SLiveLabel:{
-		title:"Current GPU Frequency and Voltage. After changing settings below you have to wait until GPU jumps up or down to refresh these values.",
+		title:"Current GPU Frequency and Voltage. After choosing a new GPU frequency or right after boot, you will have to wait until GPU jumps up or down to refresh these values.",
 		refresh:1000,
 		action:"live gpu"
 	}},
@@ -22,6 +22,10 @@ cat << CTAG
                 default:0,
                 action:"generic /sys/module/mali/parameters/mali_use_vpll"
         }},
+{ SPane:{
+		title:"GPU Frequency Control",
+		description:"The defaults are 108, 160, 200 and 267. GPU frequencies over 267MHz will cause excessive heat, which will trigger CPU's thermal throttling, reducing CPU's performance."
+	}},
 	{ SSeekBar:{
 	title:"GPU 1st Step Frequency",
 		default:108,
@@ -91,7 +95,7 @@ cat << CTAG
 		}
 	}},
 	{ SPane:{
-		title:"GPU Voltages",
+		title:"GPU Voltage Control",
 		description:"The defaults are 900, 900, 950 and 1000. Decreasing voltage will lower power consumption of the GPU. Increasing it on overclocked frequencies improves stability. Too low voltage may cause instabilities and freezes."
 	}},
 	{ SSeekBar:{
@@ -175,7 +179,7 @@ cat << CTAG
 		}
 	}},
 	{ SPane:{
-		title:"GPU Thresholds",
+		title:"GPU Threshold Control",
 		description:"GPU load thresholds to change between frequency steps."
 	}},
 	{ SSeekBar:{
