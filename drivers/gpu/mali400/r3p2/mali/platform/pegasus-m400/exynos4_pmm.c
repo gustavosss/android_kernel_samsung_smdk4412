@@ -113,10 +113,10 @@ mali_dvfs_table mali_dvfs[MALI_DVFS_STEPS]={
 			/* step 3 */{440  ,1000000	,1025000   ,85   , 90},
 			/* step 4 */{533  ,1000000	,1075000   ,95   ,100} };
 #else
-			/* step 0 */{108  ,1000000	, 850000   ,85   , 90},
+			/* step 0 */{108  ,1000000	, 900000   ,85   , 90},
 			/* step 1 */{160  ,1000000	, 900000   ,60   , 90},
-			/* step 1 */{200  ,1000000	, 950000   ,75   , 90},
-			/* step 1 */{267  ,1000000	, 950000   ,70   ,100}};
+			/* step 2 */{200  ,1000000	, 950000   ,75   , 90},
+			/* step 3 */{267  ,1000000	, 1000000   ,70   ,100}};
 #endif
 
 #ifdef EXYNOS4_ASV_ENABLED
@@ -183,7 +183,7 @@ static unsigned int asv_3d_volt_4212_9_table[MALI_DVFS_STEPS][ASV_LEVEL_PD] = {
 #else
 
 static unsigned int asv_3d_volt_4210_12_table[MALI_DVFS_STEPS][ASV_LEVEL_4210_12] = {
-	{  1150000,  1100000,  1050000,   1000000,   950000,   900000,   850000,   800000},	/* L3(134Mhz) */
+	{  1150000,  1100000,  1050000,   1000000,   950000,   900000,   850000,   800000},	/* L3(100Mhz) */
 #if (MALI_DVFS_STEPS > 1)
 	{  1150000,  1100000,  1050000,   1000000,   950000,   900000,   850000,   800000},	/* L2(160Mhz) */
 #if (MALI_DVFS_STEPS > 2)
@@ -196,7 +196,7 @@ static unsigned int asv_3d_volt_4210_12_table[MALI_DVFS_STEPS][ASV_LEVEL_4210_12
 };
 
 static unsigned int asv_3d_volt_4210_14_table[MALI_DVFS_STEPS][ASV_LEVEL_4210_14] = {
-	{  1000000,  950000,   900000,   850000,   800000},	/* L3(134Mhz) */
+	{  1000000,  950000,   900000,   850000,   800000},	/* L3(100Mhz) */
 #if (MALI_DVFS_STEPS > 1)
 	{  1000000,  950000,   900000,   850000,   800000},	/* L2(160Mhz) */
 #if (MALI_DVFS_STEPS > 2)
