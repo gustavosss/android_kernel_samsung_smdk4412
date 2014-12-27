@@ -565,6 +565,8 @@ static int exynos4_enter_core0_aftr(struct cpuidle_device *dev,
 
 	local_irq_disable();
 
+	cpu_pm_enter();
+
 	if (log_en)
 		pr_info("+++aftr\n");
 
@@ -627,6 +629,8 @@ early_wakeup:
 	if (log_en)
 		pr_info("---aftr\n");
 
+	cpu_pm_exit();
+
 	local_irq_enable();
 	idle_time = (after.tv_sec - before.tv_sec) * USEC_PER_SEC +
 		    (after.tv_usec - before.tv_usec);
@@ -659,6 +663,8 @@ static int exynos4_enter_core0_lpa(struct cpuidle_device *dev,
 	bt_uart_rts_ctrl(1);
 #endif
 	local_irq_disable();
+
+	cpu_pm_enter();
 
 #if defined(CONFIG_INTERNAL_MODEM_IF) || defined(CONFIG_SAMSUNG_PHONE_TTY)
 	gpio_set_value(GPIO_PDA_ACTIVE, 0);
@@ -759,6 +765,8 @@ early_wakeup:
 #if defined(CONFIG_INTERNAL_MODEM_IF) || defined(CONFIG_SAMSUNG_PHONE_TTY)
 	gpio_set_value(GPIO_PDA_ACTIVE, 1);
 #endif
+
+	cpu_pm_exit();
 
 	local_irq_enable();
 	idle_time = (after.tv_sec - before.tv_sec) * USEC_PER_SEC +
@@ -920,7 +928,6 @@ static int exynos4_enter_lowpower(struct cpuidle_device *dev,
 	if (!enter_mode)
 		return exynos4_enter_idle(dev, new_state);
 	else {
-		cpu_pm_enter();
 #ifdef CONFIG_CORESIGHT_ETM
 		etm_disable(0);
 #endif
@@ -931,7 +938,6 @@ static int exynos4_enter_lowpower(struct cpuidle_device *dev,
 #ifdef CONFIG_CORESIGHT_ETM
 		etm_enable(0);
 #endif
-		cpu_pm_exit();
 	}
 
 	return ret;
