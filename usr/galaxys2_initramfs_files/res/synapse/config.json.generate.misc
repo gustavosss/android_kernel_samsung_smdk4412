@@ -7,7 +7,7 @@ cat << CTAG
 	}},
 	{ SCheckBox:{
 		description:"When disabled this will stop logcat creation; crash reports will be useless, but there is a minor possible gain to battery life.",
-                label:"System Logging",
+                label:"Android Logcat",
                 default:`cat /sys/kernel/logger_mode/logger_mode | tr -cd [0-9]`,
                 action:"generic /sys/kernel/logger_mode/logger_mode"
         }},
