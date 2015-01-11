@@ -211,7 +211,7 @@ extern void request_suspend_state(int);
 extern int get_suspend_state(void);
 static DEFINE_MUTEX(s2w_lock);
 static DEFINE_SEMAPHORE(s2w_sem);
-bool s2w_enabled = true;
+bool s2w_enabled = false;
 extern bool s2w_prox_near;
 
 static void slide2wake_force_wakeup(void)
