@@ -10,7 +10,7 @@ RAMDISK_LP="/home/gustavo/ramdisk_lp"
 RAMDISK_OUT="/home/gustavo/kernel/usr/initramfs/ramdisk.cpio"
 MODULES=("/home/gustavo/kernel/net/sunrpc/auth_gss/auth_rpcgss.ko" "/home/gustavo/kernel/fs/cifs/cifs.ko" "drivers/net/wireless/bcmdhd/dhd.ko" "/home/gustavo/kernel/fs/lockd/lockd.ko" "/home/gustavo/kernel/fs/nfs/nfs.ko" "/home/gustavo/kernel/net/sunrpc/auth_gss/rpcsec_gss_krb5.ko" "drivers/scsi/scsi_wait_scan.ko" "drivers/samsung/fm_si4709/Si4709_driver.ko" "/home/gustavo/kernel/net/sunrpc/sunrpc.ko")
 KERNEL_DIR="/home/gustavo/kernel"
-MODULES_DIR="/home/gustavo/kernel/usr/galaxys2_initramfs_files/modules"
+MODULES_DIR="/home/gustavo/kernel/out/system/lib/modules"
 CURRENTDATE=$(date +"%d-%m")
 
 case "$1" in
@@ -27,7 +27,7 @@ case "$1" in
         cd ${KERNEL_DIR}
         make -j3 kernel_defconfig ARCH=arm CROSS_COMPILE=${TOOLCHAIN}
 
-        # build modules first to include them into android ramdisk
+        # build modules first to include them into zip file
         make -j3 ARCH=arm CROSS_COMPILE=${TOOLCHAIN} modules
        
         for module in "${MODULES[@]}" ; do
@@ -61,7 +61,7 @@ case "$1" in
 	    cd ${KERNEL_DIR}
         make kernel_defconfig ARCH=arm CROSS_COMPILE=${TOOLCHAIN}
 
-        # build modules first to include them into android ramdisk
+        # build modules first to include them into zip file
         make -j3 ARCH=arm CROSS_COMPILE=${TOOLCHAIN} modules
        
         for module in "${MODULES[@]}" ; do

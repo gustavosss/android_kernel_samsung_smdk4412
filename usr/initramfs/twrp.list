@@ -26,7 +26,6 @@ file /res/systemcat /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/system
 file /res/systemstatus /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/systemstatus 755 0 0
 file /res/uci.sh /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/uci.sh 755 01000 01003
 file /res/update.url /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/update.url 755 01000 01003
-file /res/lights.exynos4.so /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/lights.exynos4.so 755 0 0
 file /res/msaa /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/msaa 755 0 0
 dir /res/customconfig 755 0 0
 file /res/customconfig/customconfig.xml /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/customconfig/customconfig.xml 755 0 0
@@ -55,8 +54,6 @@ file /res/customconfig/actions/hotplug  /home/gustavo/kernel/usr/galaxys2_initra
 file /res/customconfig/actions/profile  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/customconfig/actions/profile 755 0 0
 file /res/customconfig/actions/reset  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/customconfig/actions/reset 755 0 0
 file /res/customconfig/actions/msaa  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/customconfig/actions/msaa 755 0 0
-file /res/libsqlite.so /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/libsqlite.so 755 0 0
-file /res/sqlite3 /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/sqlite3 755 0 0
 dir /res/synapse 755 0 0
 dir /res/synapse/actions 755 0 0
 file /res/synapse/actions/live  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/actions/live 755 0 0
@@ -81,16 +78,6 @@ file /res/synapse/config.json.generate.memory  /home/gustavo/kernel/usr/galaxys2
 file /res/synapse/config.json.generate.fs  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.fs 755 0 0
 file /res/synapse/config.json.generate.tweaks  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.tweaks 755 0 0
 file /res/synapse/config.json.generate.misc  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.misc 755 0 0
-dir /modules 755 0 0
-file /modules/auth_rpcgss.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/auth_rpcgss.ko 644 0 0
-file /modules/cifs.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/cifs.ko 644 0 0
-file /modules/dhd.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/dhd.ko 644 0 0
-file /modules/lockd.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/lockd.ko 644 0 0
-file /modules/nfs.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/nfs.ko 644 0 0
-file /modules/rpcsec_gss_krb5.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/rpcsec_gss_krb5.ko 644 0 0
-file /modules/scsi_wait_scan.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/scsi_wait_scan.ko 644 0 0
-file /modules/Si4709_driver.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/Si4709_driver.ko 644 0 0
-file /modules/sunrpc.ko /home/gustavo/kernel/usr/galaxys2_initramfs_files/modules/sunrpc.ko 644 0 0
 dir /sbin 755 0 0
 dir /sbin/ext 755 0 0
 file /sbin/uci /home/gustavo/kernel/usr/galaxys2_initramfs_files/sbin/uci 755 0 0

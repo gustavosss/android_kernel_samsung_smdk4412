@@ -72,20 +72,6 @@ read_config
 
 fi
 
-# install kernel modules
-mount -o remount,rw /system
-rm /system/lib/modules/*.ko
-cp /modules/dhd.ko /system/lib/modules/
-cp /modules/Si4709_driver.ko /system/lib/modules/
-cp /modules/auth_rpcgss.ko /system/lib/modules/
-cp /modules/cifs.ko /system/lib/modules/
-cp /modules/lockd.ko /system/lib/modules/
-cp /modules/nfs.ko /system/lib/modules/
-cp /modules/rpcsec_gss_krb5.ko /system/lib/modules/
-cp /modules/sunrpc.ko /system/lib/modules/
-cp /modules/scsi_wait_scan.ko /system/lib/modules/
-chmod 0644 /system/lib/modules/*.ko
-
 # system status script
 cp /res/systemstatus /system/bin/systemstatus
 chown root.system /system/bin/systemstatus
@@ -94,18 +80,6 @@ chmod 0755 /system/bin/systemstatus
 cp /res/systemcat /system/bin/systemcat
 chown root.system /system/bin/systemcat
 chmod 0755 /system/bin/systemcat
-
-# install lights lib needed by BLN
-rm /system/lib/hw/lights.exynos4.so
-cp /res/lights.exynos4.so /system/lib/hw/lights.exynos4.so
-chown root.root /system/lib/hw/lights.exynos4.so
-chmod 0664 /system/lib/hw/lights.exynos4.so
-
-# install modded sqlite
-cp -a /res/libsqlite.so /system/lib/libsqlite.so
-cp -a /res/sqlite3 /system/xbin/sqlite3
-chmod 0644 /system/lib/libsqlite.so
-chmod 0755 /system/xbin/sqlite3
 
 mount -o remount,ro /system
 
