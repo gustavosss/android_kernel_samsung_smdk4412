@@ -35,8 +35,49 @@ cat << CTAG
 		}
 	}},
 { SPane:{
-		title:"Other Settings",
-		description:"Misc Screen Settings",
+		title:"Brightness & Gamma",
+	}},	
+	{ SSeekBar:{
+                  title:"Auto brightness sensitivity",
+                  description:"Higher values will result in staying in lowest brightness level for brighter conditions.",
+                  step:10,
+                  min:0,
+                  max:150,
+                  default:40,
+                  action:"generic /sys/class/misc/brightness_curve/min_bl",
+               }},
+    { SSeekBar:{
+                  title:"Minimum brightness level",
+                  step:1,
+                  min:0,
+                  max:24,
+                  default:0,
+                  action:"generic /sys/class/misc/brightness_curve/min_gamma",
+               }},
+    { SSeekBar:{
+                  title:"Maximum brightness level",
+                  step:1,
+                  min:0,
+                  max:24,
+                  default:20,
+                  action:"generic /sys/class/misc/brightness_curve/max_gamma",
+               }},
+	{ SSeekBar:{
+                  title:"User adjustable gamma shift",
+                  step:5,
+                  min:-50,
+                  max:50,
+                  default:0,
+                  action:"generic /sys/class/lcd/panel/user_gamma_adjust",
+               }},
+    { SCheckBox:{
+		description:"Lower brightness and yellowish colors for more battery life.",
+                label:"Screen Power Reduce",
+                default:0,
+                action:"generic /sys/class/lcd/panel/power_reduce",
+        }},   
+{ SPane:{
+		title:"Slide2Wake",
 	}},
 	{ SCheckBox:{
 		description:"Enabling slide2wake may decrease your battery life.",
@@ -44,16 +85,6 @@ cat << CTAG
                 default:0,
                 action:"generic /sys/devices/virtual/sec/sec_touchscreen/tsp_slide2wake",
         }},
-
-	{ SSeekBar:{
-                  title:"User adjustable gamma shift.",
-                  step:5,
-                  min:-50,
-                  max:50,
-                  default:0,
-                  action:"generic /sys/class/lcd/panel/user_gamma_adjust",
-               }
-            },
 
 	 ]
 }
