@@ -72,6 +72,7 @@ file /res/synapse/config.json.generate.cpu  /home/gustavo/kernel/usr/galaxys2_in
 file /res/synapse/config.json.generate.governor  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.governor 755 0 0
 file /res/synapse/config.json.generate.gpu  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.gpu 755 0 0
 file /res/synapse/config.json.generate.screen  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.screen 755 0 0
+file /res/synapse/config.json.generate.colors  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.colors 755 0 0
 file /res/synapse/config.json.generate.sound  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.sound 755 0 0
 file /res/synapse/config.json.generate.bln  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.bln 755 0 0
 file /res/synapse/config.json.generate.memory  /home/gustavo/kernel/usr/galaxys2_initramfs_files/res/synapse/config.json.generate.memory 755 0 0
