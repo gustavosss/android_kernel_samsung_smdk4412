@@ -4,31 +4,31 @@
 #include "mdnie.h"
 
 #ifdef CONFIG_FB_S5P_MDNIE_HIJACK
-// Yank555.lu : hijack profile (use natural as base)
+// Yank555.lu : hijack profile (use dynamic as base)
 static unsigned short tune_hijack[] = {
-	/*start U1 natural ui */
-	0x0001, 0x0040, /*SCR HDTR */
-	0x002c, 0x0fff, /*DNR bypass 0x003C */
-	0x002d, 0x1900, /*DNR bypass 0x0a08 */
-	0x002e, 0x0000, /*DNR bypass 0x1010 */
-	0x002f, 0x0fff, /*DNR bypass 0x0400 */
-	0x003A, 0x000d, /*HDTR DE_off CS : de on = d ,  de off = 9 */
-	0x003B, 0x0001, /*DE SHARPNESS(0~1023)  off */
-	0x003C, 0x0000, /*NOISE LEVEL */
-	0x003F, 0x0180, /*CS GAIN 30 */
-	0x0042, 0x0030, /*DE TH (MAX DIFF) */
-	0x00c8, 0x0000, /*kb R	SCR */
-	0x00c9, 0xb6bc, /*gc R */
-	0x00ca, 0xd4ff, /*rm R */
-	0x00cb, 0xffff, /*yw R */
-	0x00cc, 0x0000, /*kb G */
-	0x00cd, 0xffff, /*gc G */
-	0x00ce, 0x2148, /*rm G */
-	0x00cf, 0xe8f1, /*yw G */
-	0x00d0, 0x00ff, /*kb B */
-	0x00d1, 0x53ee, /*gc B */
-	0x00d2, 0x28f6, /*rm B */
-	0x00d3, 0x56ec, /*yw B */
+	/*start U1 dynamic ui */
+	0x0001, 0x0040, /* ( 0, 1) SCR HDTR */
+	0x002c, 0x0fff, /* ( 2, 3) DNR bypass 0x003C */
+	0x002d, 0x1900, /* ( 4, 5) DNR bypass 0x0a08 */
+	0x002e, 0x0000, /* ( 6, 7) DNR bypass 0x1010 */
+	0x002f, 0x0fff, /* ( 8, 9) DNR bypass 0x0400 */
+	0x003A, 0x0009, /* ( 10, 11) HDTR DE_off CS : de on = d ,  de off = 9 */
+	0x003B, 0x0000, /* ( 12, 13) DE SHARPNESS(0~1023)  off */
+	0x003C, 0x0000, /* ( 14, 15) NOISE LEVEL */
+	0x003F, 0x0180, /* ( 16, 17) CS GAIN 30 */
+	0x0042, 0x0030, /* ( 18, 19) DE TH (MAX DIFF) */
+	0x00c8, 0x0000, /* ( 20, 21) kb R	SCR */
+	0x00c9, 0x0000, /* ( 22, 23) gc R */
+	0x00ca, 0xffff, /* ( 24, 25) rm R */
+	0x00cb, 0xffff, /* ( 26, 27) yw R */
+	0x00cc, 0x0000, /* ( 28, 29) kb G */
+	0x00cd, 0xffff, /* ( 30, 31) gc G */
+	0x00ce, 0x0000, /* ( 32, 33) rm G */
+	0x00cf, 0xffff, /* ( 34, 35) yw G */
+	0x00d0, 0x00ff, /* ( 36, 37) kb B */
+	0x00d1, 0x00ff, /* ( 38, 39) gc B */
+	0x00d2, 0x00ff, /* ( 40, 41) rm B */
+	0x00d3, 0x00ff, /* ( 42, 43) yw B */
 	0x00D6, 0x2000, /*GAMMA start */
 	0x00D7, 0x2000,
 	0x00D8, 0x2000,

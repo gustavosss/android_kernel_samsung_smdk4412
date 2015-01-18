@@ -824,7 +824,7 @@ static ssize_t hijack_store(struct device * dev, struct device_attribute * attr,
 
 static ssize_t sharpen_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", (tune_hijack[3] & 0x0004) >> 2);
+	return sprintf(buf, "%d\n", (tune_hijack[13] & 0x0004) >> 2);
 }
 
 static ssize_t sharpen_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -834,10 +834,10 @@ static ssize_t sharpen_store(struct device * dev, struct device_attribute * attr
 
 	sscanf(buf, "%d", &new_val);
 
-	if (new_val != ((tune_hijack[3] & 0x0004) >> 2)) {
+	if (new_val != ((tune_hijack[13] & 0x0004) >> 2)) {
 		if (new_val < 0 || new_val > 1)
 			return -EINVAL;
-		tune_hijack[3] = (new_val << 2) + (tune_hijack[3] & 0xFFFB);
+		tune_hijack[13] = (new_val << 2) + (tune_hijack[13] & 0xFFFB);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -848,32 +848,10 @@ static ssize_t sharpen_store(struct device * dev, struct device_attribute * attr
 
 static ssize_t red_red_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", ((tune_hijack[23] & 0xFF00) >> 8));
-}
-
-static ssize_t red_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != ((tune_hijack[23] & 0xFF00) >> 8)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[23] = (new_val << 8) + (tune_hijack[23] & 0x00FF);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-static ssize_t red_green_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
 	return sprintf(buf, "%d\n", ((tune_hijack[25] & 0xFF00) >> 8));
 }
 
-static ssize_t red_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+static ssize_t red_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
 {
 	int new_val;
 	struct mdnie_info *mdnie = dev_get_drvdata(dev);
@@ -890,9 +868,31 @@ static ssize_t red_green_store(struct device * dev, struct device_attribute * at
 	return size;
 }
 
+static ssize_t red_green_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", ((tune_hijack[33] & 0xFF00) >> 8));
+}
+
+static ssize_t red_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != ((tune_hijack[33] & 0xFF00) >> 8)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[33] = (new_val << 8) + (tune_hijack[33] & 0x00FF);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
 static ssize_t red_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", ((tune_hijack[27] & 0xFF00) >> 8));
+	return sprintf(buf, "%d\n", ((tune_hijack[41] & 0xFF00) >> 8));
 }
 
 static ssize_t red_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -902,10 +902,10 @@ static ssize_t red_blue_store(struct device * dev, struct device_attribute * att
 
 	sscanf(buf, "%d", &new_val);
 
-	if (new_val != ((tune_hijack[27] & 0xFF00) >> 8)) {
+	if (new_val != ((tune_hijack[41] & 0xFF00) >> 8)) {
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
-		tune_hijack[27] = (new_val << 8) + (tune_hijack[27] & 0x00FF);
+		tune_hijack[41] = (new_val << 8) + (tune_hijack[41] & 0x00FF);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -938,7 +938,7 @@ static ssize_t cyan_red_store(struct device * dev, struct device_attribute * att
 
 static ssize_t cyan_green_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", (tune_hijack[25] & 0x00FF));
+	return sprintf(buf, "%d\n", (tune_hijack[31] & 0x00FF));
 }
 
 static ssize_t cyan_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -948,10 +948,10 @@ static ssize_t cyan_green_store(struct device * dev, struct device_attribute * a
 
 	sscanf(buf, "%d", &new_val);
 
-	if (new_val != (tune_hijack[25] & 0x00FF)) {
+	if (new_val != (tune_hijack[31] & 0x00FF)) {
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
-		tune_hijack[25] = new_val + (tune_hijack[25] & 0xFF00);
+		tune_hijack[31] = new_val + (tune_hijack[31] & 0xFF00);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -960,7 +960,7 @@ static ssize_t cyan_green_store(struct device * dev, struct device_attribute * a
 
 static ssize_t cyan_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", (tune_hijack[27] & 0x00FF));
+	return sprintf(buf, "%d\n", (tune_hijack[39] & 0x00FF));
 }
 
 static ssize_t cyan_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -970,10 +970,10 @@ static ssize_t cyan_blue_store(struct device * dev, struct device_attribute * at
 
 	sscanf(buf, "%d", &new_val);
 
-	if (new_val != (tune_hijack[27] & 0x00FF)) {
+	if (new_val != (tune_hijack[39] & 0x00FF)) {
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
-		tune_hijack[27] = new_val + (tune_hijack[27] & 0xFF00);
+		tune_hijack[39] = new_val + (tune_hijack[39] & 0xFF00);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -984,7 +984,7 @@ static ssize_t cyan_blue_store(struct device * dev, struct device_attribute * at
 
 static ssize_t green_red_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", ((tune_hijack[29] & 0xFF00) >> 8));
+	return sprintf(buf, "%d\n", ((tune_hijack[23] & 0xFF00) >> 8));
 }
 
 static ssize_t green_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -994,10 +994,10 @@ static ssize_t green_red_store(struct device * dev, struct device_attribute * at
 
 	sscanf(buf, "%d", &new_val);
 
-	if (new_val != ((tune_hijack[29] & 0xFF00) >> 8)) {
+	if (new_val != ((tune_hijack[23] & 0xFF00) >> 8)) {
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
-		tune_hijack[29] = (new_val << 8) + (tune_hijack[29] & 0x00FF);
+		tune_hijack[23] = (new_val << 8) + (tune_hijack[23] & 0x00FF);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -1028,146 +1028,10 @@ static ssize_t green_green_store(struct device * dev, struct device_attribute * 
 
 static ssize_t green_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", ((tune_hijack[33] & 0xFF00) >> 8));
-}
-
-static ssize_t green_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != ((tune_hijack[33] & 0xFF00) >> 8)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[33] = (new_val << 8) + (tune_hijack[33] & 0x00FF);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-/* magenta */
-
-static ssize_t magenta_red_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%d\n", (tune_hijack[29] & 0x00FF));
-}
-
-static ssize_t magenta_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != (tune_hijack[29] & 0x00FF)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[29] = new_val + (tune_hijack[29] & 0xFF00);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-static ssize_t magenta_green_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%d\n", (tune_hijack[31] & 0x00FF));
-}
-
-static ssize_t magenta_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != (tune_hijack[31] & 0x00FF)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[31] = new_val + (tune_hijack[31] & 0xFF00);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-static ssize_t magenta_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%d\n", (tune_hijack[33] & 0x00FF));
-}
-
-static ssize_t magenta_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != (tune_hijack[33] & 0x00FF)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[33] = new_val + (tune_hijack[33] & 0xFF00);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-/* blue */
-
-static ssize_t blue_red_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%d\n", ((tune_hijack[35] & 0xFF00) >> 8));
-}
-
-static ssize_t blue_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != ((tune_hijack[35] & 0xFF00) >> 8)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[35] = (new_val << 8) + (tune_hijack[35] & 0x00FF);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-static ssize_t blue_green_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%d\n", ((tune_hijack[37] & 0xFF00) >> 8));
-}
-
-static ssize_t blue_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != ((tune_hijack[37] & 0xFF00) >> 8)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[37] = (new_val << 8) + (tune_hijack[37] & 0x00FF);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-static ssize_t blue_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
 	return sprintf(buf, "%d\n", ((tune_hijack[39] & 0xFF00) >> 8));
 }
 
-static ssize_t blue_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+static ssize_t green_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
 {
 	int new_val;
 	struct mdnie_info *mdnie = dev_get_drvdata(dev);
@@ -1184,14 +1048,172 @@ static ssize_t blue_blue_store(struct device * dev, struct device_attribute * at
 	return size;
 }
 
+/* magenta */
+
+static ssize_t magenta_red_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", (tune_hijack[25] & 0x00FF));
+}
+
+static ssize_t magenta_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != (tune_hijack[25] & 0x00FF)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[25] = new_val + (tune_hijack[25] & 0xFF00);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
+static ssize_t magenta_green_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", (tune_hijack[33] & 0x00FF));
+}
+
+static ssize_t magenta_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != (tune_hijack[33] & 0x00FF)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[33] = new_val + (tune_hijack[33] & 0xFF00);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
+static ssize_t magenta_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", (tune_hijack[41] & 0x00FF));
+}
+
+static ssize_t magenta_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != (tune_hijack[41] & 0x00FF)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[41] = new_val + (tune_hijack[41] & 0xFF00);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
+/* blue */
+
+static ssize_t blue_red_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", ((tune_hijack[21] & 0xFF00) >> 8));
+}
+
+static ssize_t blue_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != ((tune_hijack[21] & 0xFF00) >> 8)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[21] = (new_val << 8) + (tune_hijack[21] & 0x00FF);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
+static ssize_t blue_green_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", ((tune_hijack[29] & 0xFF00) >> 8));
+}
+
+static ssize_t blue_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != ((tune_hijack[29] & 0xFF00) >> 8)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[29] = (new_val << 8) + (tune_hijack[29] & 0x00FF);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
+static ssize_t blue_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", ((tune_hijack[37] & 0xFF00) >> 8));
+}
+
+static ssize_t blue_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != ((tune_hijack[37] & 0xFF00) >> 8)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[37] = (new_val << 8) + (tune_hijack[37] & 0x00FF);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
 /* yellow */
 
 static ssize_t yellow_red_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", (tune_hijack[35] & 0x00FF));
+	return sprintf(buf, "%d\n", (tune_hijack[27] & 0x00FF));
 }
 
 static ssize_t yellow_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != (tune_hijack[27] & 0x00FF)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[27] = new_val + (tune_hijack[27] & 0xFF00);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
+static ssize_t yellow_green_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", (tune_hijack[35] & 0x00FF));
+}
+
+static ssize_t yellow_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
 {
 	int new_val;
 	struct mdnie_info *mdnie = dev_get_drvdata(dev);
@@ -1208,31 +1230,9 @@ static ssize_t yellow_red_store(struct device * dev, struct device_attribute * a
 	return size;
 }
 
-static ssize_t yellow_green_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%d\n", (tune_hijack[37] & 0x00FF));
-}
-
-static ssize_t yellow_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != (tune_hijack[37] & 0x00FF)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[37] = new_val + (tune_hijack[37] & 0xFF00);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
 static ssize_t yellow_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", (tune_hijack[39] & 0x00FF));
+	return sprintf(buf, "%d\n", (tune_hijack[43] & 0x00FF));
 }
 
 static ssize_t yellow_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -1242,10 +1242,10 @@ static ssize_t yellow_blue_store(struct device * dev, struct device_attribute * 
 
 	sscanf(buf, "%d", &new_val);
 
-	if (new_val != (tune_hijack[39] & 0x00FF)) {
+	if (new_val != (tune_hijack[43] & 0x00FF)) {
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
-		tune_hijack[39] = new_val + (tune_hijack[39] & 0xFF00);
+		tune_hijack[43] = new_val + (tune_hijack[43] & 0xFF00);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -1270,9 +1270,9 @@ static ssize_t black_store(struct device * dev, struct device_attribute * attr, 
 		if (new_val < -128 || new_val > 128)
 			return -EINVAL;
 		black = new_val;
-		tune_hijack[41] = ((max(0,min(255, black_r + black))) << 8) + (tune_hijack[41] & 0x00FF);
-		tune_hijack[43] = ((max(0,min(255, black_r + black))) << 8) + (tune_hijack[43] & 0x00FF);
-		tune_hijack[45] = ((max(0,min(255, black_b + black))) << 8) + (tune_hijack[45] & 0x00FF);
+		tune_hijack[21] = ((max(0,min(255, black_r + black))) << 8) + (tune_hijack[21] & 0x00FF);
+		tune_hijack[29] = ((max(0,min(255, black_g + black))) << 8) + (tune_hijack[29] & 0x00FF);
+		tune_hijack[37] = ((max(0,min(255, black_b + black))) << 8) + (tune_hijack[37] & 0x00FF);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -1295,7 +1295,7 @@ static ssize_t black_red_store(struct device * dev, struct device_attribute * at
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
 		black_r = new_val;
-		tune_hijack[41] = ((max(0,min(255, black_r + black))) << 8) + (tune_hijack[41] & 0x00FF);
+		tune_hijack[21] = ((max(0,min(255, black_r + black))) << 8) + (tune_hijack[21] & 0x00FF);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -1318,7 +1318,7 @@ static ssize_t black_green_store(struct device * dev, struct device_attribute * 
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
 		black_g = new_val;
-		tune_hijack[43] = ((max(0,min(255, black_r + black))) << 8) + (tune_hijack[43] & 0x00FF);
+		tune_hijack[29] = ((max(0,min(255, black_g + black))) << 8) + (tune_hijack[29] & 0x00FF);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -1341,7 +1341,7 @@ static ssize_t black_blue_store(struct device * dev, struct device_attribute * a
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
 		black_b = new_val;
-		tune_hijack[45] = ((max(0,min(255, black_b + black))) << 8) + (tune_hijack[45] & 0x00FF);
+		tune_hijack[37] = ((max(0,min(255, black_b + black))) << 8) + (tune_hijack[37] & 0x00FF);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -1352,7 +1352,7 @@ static ssize_t black_blue_store(struct device * dev, struct device_attribute * a
 
 static ssize_t white_red_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", (tune_hijack[41] & 0x00FF));
+	return sprintf(buf, "%d\n", (tune_hijack[27] & 0x00FF));
 }
 
 static ssize_t white_red_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
@@ -1362,10 +1362,10 @@ static ssize_t white_red_store(struct device * dev, struct device_attribute * at
 
 	sscanf(buf, "%d", &new_val);
 
-	if (new_val != (tune_hijack[41] & 0x00FF)) {
+	if (new_val != (tune_hijack[27] & 0x00FF)) {
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
-		tune_hijack[41] = new_val + (tune_hijack[41] & 0xFF00);
+		tune_hijack[27] = new_val + (tune_hijack[27] & 0xFF00);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
@@ -1374,10 +1374,32 @@ static ssize_t white_red_store(struct device * dev, struct device_attribute * at
 
 static ssize_t white_green_show(struct device *dev, struct device_attribute *attr, char *buf)
 {
-	return sprintf(buf, "%d\n", (tune_hijack[43] & 0x00FF));
+	return sprintf(buf, "%d\n", (tune_hijack[35] & 0x00FF));
 }
 
 static ssize_t white_green_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
+{
+	int new_val;
+	struct mdnie_info *mdnie = dev_get_drvdata(dev);
+
+	sscanf(buf, "%d", &new_val);
+
+	if (new_val != (tune_hijack[35] & 0x00FF)) {
+		if (new_val < 0 || new_val > 255)
+			return -EINVAL;
+		tune_hijack[35] = new_val + (tune_hijack[35] & 0xFF00);
+		if (hijack == HIJACK_ENABLED)
+			set_mdnie_value(mdnie, 0);
+	}
+	return size;
+}
+
+static ssize_t white_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", (tune_hijack[43] & 0x00FF));
+}
+
+static ssize_t white_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
 {
 	int new_val;
 	struct mdnie_info *mdnie = dev_get_drvdata(dev);
@@ -1388,28 +1410,6 @@ static ssize_t white_green_store(struct device * dev, struct device_attribute * 
 		if (new_val < 0 || new_val > 255)
 			return -EINVAL;
 		tune_hijack[43] = new_val + (tune_hijack[43] & 0xFF00);
-		if (hijack == HIJACK_ENABLED)
-			set_mdnie_value(mdnie, 0);
-	}
-	return size;
-}
-
-static ssize_t white_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
-{
-	return sprintf(buf, "%d\n", (tune_hijack[45] & 0x00FF));
-}
-
-static ssize_t white_blue_store(struct device * dev, struct device_attribute * attr, const char * buf, size_t size)
-{
-	int new_val;
-	struct mdnie_info *mdnie = dev_get_drvdata(dev);
-
-	sscanf(buf, "%d", &new_val);
-
-	if (new_val != (tune_hijack[45] & 0x00FF)) {
-		if (new_val < 0 || new_val > 255)
-			return -EINVAL;
-		tune_hijack[45] = new_val + (tune_hijack[45] & 0xFF00);
 		if (hijack == HIJACK_ENABLED)
 			set_mdnie_value(mdnie, 0);
 	}
