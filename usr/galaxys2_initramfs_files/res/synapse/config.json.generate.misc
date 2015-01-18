@@ -17,10 +17,19 @@ cat << CTAG
 	default:`cat /sys/kernel/printk_mode/printk_mode | tr -cd [0-9]`,
 	action:"generic /sys/kernel/printk_mode/printk_mode"
         }},
-       { SPane:{
+{ SPane:{
+		title:"IPv6 Support",
+		description:"The device doesn't reply to ICMPv6 requests when in deep sleep and therefore it will lose the connection to the internet. Keeping IPv6 support disabled will prevent it from happening."
+}},
+{ SCheckBox:{
+                label:"IPv6 Support",
+                default:0,
+                action:"option ipv6"
+        }},
+{ SPane:{
 		title:"Fuel-Gauge",
 		description:"If you think that the fuel gauge chip is behaving weird use this button to reset it. Give it a few hours after you reset the gauge. It may still show you funny values for those period, then the battery percentage should be fine."
-	}},
+}},
         { SButton:{
    label:"Reset Fuel-Gauge Chip",
    action:"reset-fuelgauge"
