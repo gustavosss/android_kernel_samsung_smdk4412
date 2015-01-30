@@ -1,0 +1,41 @@
+From 1f5ff3ff3941c5062751fdfbf4c5aa47507480f6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Cl=C3=A9ment=20Gu=C3=A9rin?= <geecko.dev@free.fr>
+Date: Sat, 3 Jan 2015 00:14:16 +0100
+Subject: [PATCH] mmc: reenable MMC_CAP_ERASE, replace secdiscard call with
+ panic for extra safety
+
+Signed-off-by: Gustavo <gustavo.santos0106@gmail.com>
+---
+ drivers/mmc/card/block.c | 2 +-
+ drivers/mmc/host/mshci.c | 4 ----
+ 2 files changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/drivers/mmc/card/block.c b/drivers/mmc/card/block.c
+index 2d55947..7ee8f09 100644
+--- a/drivers/mmc/card/block.c
++++ b/drivers/mmc/card/block.c
+@@ -2247,7 +2247,7 @@ static int mmc_blk_issue_rq(struct mmc_queue *mq, struct request *req)
+ 			mmc_blk_issue_rw_rq(mq, NULL);
+ 		if (req->cmd_flags & REQ_SECURE &&
+ 			!(card->quirks & MMC_QUIRK_MOVINAND_SECURE))
+-			ret = mmc_blk_issue_secdiscard_rq(mq, req);
++			panic("secdiscard"); //ret = mmc_blk_issue_secdiscard_rq(mq, req);
+ 		else
+ 			ret = mmc_blk_issue_discard_rq(mq, req);
+ 	} else if (req && req->cmd_flags & REQ_FLUSH) {
+diff --git a/drivers/mmc/host/mshci.c b/drivers/mmc/host/mshci.c
+index f93a7eb..45997c5 100644
+--- a/drivers/mmc/host/mshci.c
++++ b/drivers/mmc/host/mshci.c
+@@ -2045,11 +2045,7 @@ int mshci_add_host(struct mshci_host *host)
+ 	mmc->ops = &mshci_ops;
+ 	mmc->f_min = 400000;
+ 	mmc->f_max = host->max_clk;
+-#ifdef CONFIG_MACH_U1
+-	mmc->caps |= MMC_CAP_SDIO_IRQ;
+-#else
+ 	mmc->caps |= MMC_CAP_SDIO_IRQ | MMC_CAP_ERASE;
+-#endif
+ 
+ 	mmc->caps |= MMC_CAP_4_BIT_DATA;
+ 

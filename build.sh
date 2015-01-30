@@ -35,8 +35,24 @@ case "$1" in
             ${STRIP} --strip-unneeded ${MODULES_DIR}/*
         done
       
-        # build the CWM kernel
+        # build the CWM kernel with trim
         cd ${KERNEL_DIR}
+        make -j3 ARCH=arm CROSS_COMPILE=${TOOLCHAIN} CONFIG_INITRAMFS_SOURCE=${CWM_INITRAMFS_SOURCE}
+        cp arch/arm/boot/zImage ${OUTDIR}
+        cd ${OUTDIR}
+		echo "Creating kk CWM kernel zip..."
+        zip -r kk-kernel-$CURRENTDATE-CWM-TRIM.zip ./ -x *.zip *.gitignore
+        # build the TWRP kernel with trim
+        cd ${KERNEL_DIR}
+        make -j3 ARCH=arm CROSS_COMPILE=${TOOLCHAIN} CONFIG_INITRAMFS_SOURCE=${TWRP_INITRAMFS_SOURCE}
+        cp arch/arm/boot/zImage ${OUTDIR}
+        cd ${OUTDIR}
+		echo "Creating kk TWRP kernel zip..."
+        zip -r kk-kernel-$CURRENTDATE-TWRP-TRIM.zip ./ -x *.zip *.gitignore
+        
+         # build the CWM kernel
+        cd ${KERNEL_DIR}
+        patch -Rp1 < trim.patch
         make -j3 ARCH=arm CROSS_COMPILE=${TOOLCHAIN} CONFIG_INITRAMFS_SOURCE=${CWM_INITRAMFS_SOURCE}
         cp arch/arm/boot/zImage ${OUTDIR}
         cd ${OUTDIR}
@@ -49,6 +65,9 @@ case "$1" in
         cd ${OUTDIR}
 		echo "Creating kk TWRP kernel zip..."
         zip -r kk-kernel-$CURRENTDATE-TWRP.zip ./ -x *.zip *.gitignore
+        
+        cd ${KERNEL_DIR}
+        patch -p1 < ${KERNEL_DIR}/trim.patch
         
 		echo "Done!"
 	    ;;
