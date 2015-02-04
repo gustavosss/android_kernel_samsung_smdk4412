@@ -44,15 +44,6 @@ cat << CTAG
 		default:128,
                 action:"generic /sys/block/mmcblk1/queue/read_ahead_kb",
 	}},
-{ SPane:{
-		title:"Dynamic Fsync"
-	}},
-{ SCheckBox:{
-        label:"Dynamic Fsync",
-        description:"Makes Fsync operation asynchronous with screen on, increasing speed but decreasing data integrity if a freeze happens or if battery is removed. With screen off, Fsync operation is synchronous.",
-        default:0,
-        action:"generic /sys/kernel/dyn_fsync/Dyn_fsync_active"
-    }},
    ]
 }
 
