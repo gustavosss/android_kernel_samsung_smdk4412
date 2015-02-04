@@ -22,19 +22,6 @@ if [ "$SYNAPSE" = "1" ]; then
 # set up Synapse support
 /sbin/uci;
 
-if [ -f /data/trim ];
-then
-TRIM=$(cat /data/trim)
-if [ "$TRIM" = "1" ]; then
-fstrim -v /system
-fstrim -v /data
-fstrim -v /cache
-fstrim -v /preload
-fi
-else
-echo 0 > /data/trim
-fi
-
 # apply some of synapse defaults at boot
 echo "0" > /sys/devices/virtual/sec/sec_touchscreen/tsp_slide2wake
 echo "1200000" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq

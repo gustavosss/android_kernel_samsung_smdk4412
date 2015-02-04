@@ -53,15 +53,6 @@ cat << CTAG
         default:0,
         action:"generic /sys/kernel/dyn_fsync/Dyn_fsync_active"
     }},
-{ SPane:{
-		title:"TRIM on boot"
-	}},
-{ SCheckBox:{
-        label:"TRIM",
-        description:"TRIM allows the operating system to inform a solid-state drive which blocks of data are no longer considered in use and can be wiped internally. When enabled, system, data, cache and preload partitions will be trimmed on every boot.",
-        default:0,
-        action:"generic /data/trim"
-    }},
    ]
 }
 
